@@ -1,0 +1,18 @@
+<div id="account-modal" class="auth-wrapper hidden" style="position:fixed; top:0; left:0; width:100%; height:100vh; z-index:9999; background:rgba(0,0,0,0.9); overflow-y:auto; padding:20px; box-sizing:border-box;">
+    <div class="glass-panel auth-card" style="max-width:400px; margin: 5rem auto;">
+        <h2 class="cyber-heading" style="color: var(--neon-purple); margin-bottom: 1rem; text-align: center;">OPERATOR PROFILE</h2>
+
+        <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--glass-border);">
+            <p style="margin: 0 0 5px 0; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1px;">CALLSIGN</p>
+            <p id="acc-username-display" style="margin: 0 0 15px 0; font-size: 1.2rem; font-weight: bold; color: #fff;"></p>
+
+            <p style="margin: 0 0 5px 0; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1px;">AVAILABLE FUNDS</p>
+            <p id="acc-balance-display" style="margin: 0; font-size: 1.2rem; font-weight: bold; color: var(--neon-cyan);"></p>
+        </div>
+
+        <button id="btn-boss-panel" class="neon-btn hidden" style="margin-bottom: 15px; background: rgba(255,0,0,0.1); color: var(--danger-red); border-color: var(--danger-red);" onclick="window.location.href='/boss'">🚪 ENTER BOSS PANEL</button>
+
+        <button id="btn-logout-modal" class="neon-btn alt-btn" style="margin-bottom: 15px;">RAGE QUIT (LOGOUT)</button>
+        <button class="outline-btn" style="width: 100%;" onclick="document.getElementById('account-modal').classList.add('hidden')">CLOSE</button>
+    </div>
+</div>

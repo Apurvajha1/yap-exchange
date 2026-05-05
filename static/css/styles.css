@@ -1,0 +1,168 @@
+/* --- BASE VARIABLES --- */
+:root {
+    --bg-base: #06060a;
+    --glass-bg: rgba(15, 17, 26, 0.65);
+    --glass-border: rgba(0, 240, 255, 0.15);
+    --neon-cyan: #00f0ff;
+    --neon-purple: #b026ff;
+    --copium-gold: #ffb800;
+    --danger-red: #ff2a2a;
+    --text-main: #f8fafc;
+    --text-muted: #8b9bb4;
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* --- CUSTOM SCROLLBAR --- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--neon-purple); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--neon-cyan); }
+
+/* --- CORE LAYOUT --- */
+body {
+    margin: 0;
+    background-color: var(--bg-base);
+    background-image:
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-tap-highlight-color: transparent; /* Removes ugly tap flash on mobile */
+}
+
+.hidden { display: none !important; }
+
+/* Dynamic Ambient Glow - Scaled for mobile performance */
+.bg-glow { position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.35; animation: pulseGlow 8s infinite alternate; }
+.glow-1 { width: clamp(200px, 45vw, 500px); height: clamp(200px, 45vw, 500px); background: var(--neon-cyan); top: -10%; left: -5%; }
+.glow-2 { width: clamp(200px, 40vw, 400px); height: clamp(200px, 40vw, 400px); background: var(--neon-purple); bottom: -10%; right: -5%; }
+
+@keyframes pulseGlow { 0% { opacity: 0.2; transform: scale(0.95); } 100% { opacity: 0.4; transform: scale(1.05); } }
+
+/* --- TYPOGRAPHY --- */
+.cyber-heading {
+    font-family: var(--font-heading); letter-spacing: 2px; text-transform: uppercase;
+    color: #fff; margin-top: 0; text-shadow: 0 0 10px rgba(255,255,255,0.2);
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Fluid sizing */
+}
+.logo, .logo-large { font-family: var(--font-heading); font-weight: 700; color: #fff; letter-spacing: 2px; }
+.logo span, .logo-large span { color: var(--neon-cyan); text-shadow: 0 0 15px rgba(0, 240, 255, 0.6); }
+.logo-large { font-size: clamp(2rem, 6vw, 3rem); text-align: center; margin-bottom: 2rem; }
+.logo { font-size: clamp(1.2rem, 4vw, 1.5rem); }
+
+/* --- GLASS PANELS & MODALS --- */
+.glass-panel {
+    background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); box-sizing: border-box;
+}
+
+.auth-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; box-sizing: border-box; }
+.auth-card { padding: clamp(1.5rem, 5vw, 2.5rem); width: 100%; max-width: 420px; box-sizing: border-box; }
+
+/* --- HEADER --- */
+.glass-header {
+    background: rgba(10, 12, 18, 0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1rem, 3vw, 2rem);
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+    position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.6); gap: 10px;
+}
+.user-controls { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; }
+
+/* --- BUTTONS & INPUTS --- */
+.neon-btn {
+    width: 100%; background: linear-gradient(45deg, rgba(0, 240, 255, 0.1), transparent);
+    color: var(--neon-cyan); border: 1px solid var(--neon-cyan); padding: 1rem; border-radius: 8px;
+    font-family: var(--font-heading); font-size: 1rem; font-weight: 700; letter-spacing: 1px;
+    cursor: pointer; transition: all 0.2s; box-shadow: inset 0 0 10px rgba(0, 240, 255, 0);
+}
+.neon-btn:hover, .neon-btn:active { background: var(--neon-cyan); color: #000; box-shadow: 0 0 20px rgba(0, 240, 255, 0.6); transform: translateY(-2px); }
+.neon-btn.alt-btn { color: var(--neon-purple); border-color: var(--neon-purple); background: linear-gradient(45deg, rgba(176, 38, 255, 0.1), transparent); }
+.neon-btn.alt-btn:hover, .neon-btn.alt-btn:active { background: var(--neon-purple); color: #fff; box-shadow: 0 0 20px rgba(176, 38, 255, 0.6); }
+
+.outline-btn {
+    background: rgba(0,0,0,0.3); color: var(--text-muted); border: 1px solid var(--text-muted);
+    padding: 0.6rem 1rem; border-radius: 6px; font-family: var(--font-heading); font-size: clamp(0.75rem, 2vw, 0.85rem);
+    cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.outline-btn:hover, .outline-btn:active { background: rgba(255,255,255,0.05); transform: translateY(-1px); }
+
+.input-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.2rem; }
+.input-group label { font-size: 0.75rem; color: var(--neon-cyan); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+/* Font-size 16px is critical to stop iOS Safari from auto-zooming when typing */
+.input-group input, #chat-input, #new-target-name {
+    background: rgba(0, 0, 0, 0.6); border: 1px solid var(--glass-border); color: var(--text-main);
+    padding: 0.9rem 1rem; border-radius: 8px; font-size: 16px; font-family: var(--font-body);
+    box-sizing: border-box; transition: all 0.3s;
+}
+.input-group input:focus, #chat-input:focus, #new-target-name:focus { outline: none; border-color: var(--neon-cyan); box-shadow: 0 0 10px rgba(0, 240, 255, 0.2); }
+
+/* --- MAIN LAYOUT GRID --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px; /* Desktop: Main board takes left, widgets take right 380px */
+    gap: clamp(1rem, 3vw, 2rem);
+    padding: clamp(1rem, 3vw, 2rem);
+    max-width: 1500px; margin: 0 auto; box-sizing: border-box;
+}
+
+/* --- TARGET BOUNTY CARDS --- */
+/* Auto-fit makes cards resize beautifully based on screen width without breaking */
+.targets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+.target-card {
+    background: linear-gradient(180deg, var(--glass-bg), rgba(10,12,18,0.8));
+    border: 1px solid var(--glass-border); border-radius: 12px; padding: clamp(1rem, 3vw, 1.5rem);
+    transition: transform 0.2s, border-color 0.2s;
+}
+.target-card:hover { border-color: var(--neon-cyan); transform: translateY(-3px); }
+.target-name { font-family: var(--font-heading); font-size: clamp(1.2rem, 3vw, 1.4rem); margin-bottom: 1rem; color: #fff; display: flex; align-items: center; gap: 8px; word-break: break-word;}
+
+.odds-container { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.odd-btn {
+    flex: 1; min-width: 70px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,255,255,0.1);
+    padding: 0.8rem 0.3rem; border-radius: 8px; cursor: pointer; display: flex; flex-direction: column; align-items: center;
+    transition: all 0.2s;
+}
+.odd-btn:hover, .odd-btn:active { border-color: var(--copium-gold); background: rgba(255, 184, 0, 0.05); transform: scale(1.03); }
+.odd-label { font-size: 0.65rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-bottom: 0.3rem; }
+.odd-value { font-family: var(--font-heading); font-size: clamp(1rem, 2.5vw, 1.1rem); color: var(--copium-gold); font-weight: 700; text-shadow: 0 0 5px rgba(255, 184, 0, 0.4); }
+
+/* --- SIDEBAR WIDGETS --- */
+.sidebar-widget { padding: clamp(1rem, 3vw, 1.5rem); margin-bottom: 1.5rem; position: relative; overflow: hidden; }
+.sidebar-widget::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon-purple); border-radius: 4px 0 0 4px; }
+.sidebar-widget:nth-child(even)::before { background: var(--neon-cyan); }
+
+.widget-title { font-size: 1rem; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.8rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;}
+.empty-state { text-align: center; color: var(--text-muted); padding: 1.5rem 0; font-style: italic; font-size: 0.9rem;}
+.payout-row { display: flex; justify-content: space-between; background: rgba(0, 0, 0, 0.5); padding: 1rem; border-radius: 8px; margin-bottom: 1.2rem; border: 1px dashed var(--glass-border); align-items: center; font-size: 0.9rem;}
+
+.balance-display {
+    font-family: var(--font-heading); font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    background: rgba(0, 0, 0, 0.6); color: var(--copium-gold); padding: 0.5rem 1rem;
+    border-radius: 6px; border: 1px solid rgba(255, 184, 0, 0.3); white-space: nowrap;
+}
+
+/* --- MOBILE SPECIFIC FIXES --- */
+@media (max-width: 992px) {
+    /* Tablet/Mobile Breakpoint */
+    .dashboard-grid { grid-template-columns: 1fr; }
+    /* Puts the bet slip and chat above the "Add Snitch" box on mobile */
+    .sidebar-column { display: flex; flex-direction: column; }
+    .glass-header { flex-direction: column; padding: 1rem; gap: 15px; }
+    .user-controls { width: 100%; justify-content: center; }
+    /* Let the chat box shrink slightly on small screens so it fits without scrolling the whole page */
+    #chat-box { height: 35vh !important; max-height: 300px; }
+    .auth-card { max-height: 90vh; overflow-y: auto; } /* Stops modals from cutting off at the bottom of the screen */
+}
+
+@media (max-width: 480px) {
+    /* Ultra-small phones */
+    .odds-container { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; } /* Make buttons wrap nicely */
+    .odd-btn:last-child { grid-column: span 2; } /* Make the risky 24h bet stretch across the bottom */
+    .user-controls button { padding: 0.5rem 0.8rem; font-size: 0.75rem; }
+}

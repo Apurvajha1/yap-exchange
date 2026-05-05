@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Yap Exchange</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css?v=100">
+</head>
+<body>
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <div id="auth-container" class="auth-wrapper">
+        <div class="glass-panel auth-card">
+            <div class="logo-large">YAP<span>EXCHANGE</span></div>
+            <div id="login-form">
+                <h2 class="cyber-heading">LOGIN</h2>
+                <div class="input-group"><label>Username</label><input type="text" id="login-user"></div>
+                <div class="input-group"><label>Password</label><input type="password" id="login-pass"></div>
+                <button class="neon-btn" id="btn-login">LOGIN</button>
+                <p class="auth-switch">No account? <span id="show-signup">Register</span></p>
+            </div>
+            <div id="signup-form" class="hidden">
+                <h2 class="cyber-heading">REGISTER</h2>
+                <div class="input-group"><label>Username</label><input type="text" id="signup-user"></div>
+                <div class="input-group"><label>Password</label><input type="password" id="signup-pass"></div>
+                <button class="neon-btn" id="btn-signup">SIGN UP</button>
+                <p class="auth-switch">Have an account? <span id="show-login">Login</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-app" class="hidden">
+        <header class="glass-header">
+            <div class="logo">YAP<span>EXCHANGE</span></div>
+            <div class="user-controls">
+                <button class="outline-btn" style="color:var(--neon-cyan); border-color:var(--neon-cyan)" onclick="document.getElementById('how-to-modal').classList.remove('hidden')">HOW TO PLAY</button>
+                <div class="balance-display">💊 <span id="user-balance">0</span></div>
+
+                <button id="btn-account" class="outline-btn" style="color:var(--neon-purple); border-color:var(--neon-purple); display:flex; align-items:center; gap:8px;">
+                    <span id="header-username">Loading...</span> <span style="font-size:1.1rem;">⚙️</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            <div class="board-column">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+                    <h2 class="cyber-heading" style="margin: 0;">CASINO FLOOR</h2>
+                    <div style="display: flex; gap: 10px;">
+                        <button id="tab-hot" class="neon-btn" style="padding: 0.4rem 1rem; width: auto; font-size: 0.8rem;">🔥 TOP 4</button>
+                        <button id="tab-all" class="outline-btn" style="padding: 0.4rem 1rem; width: auto; font-size: 0.8rem;">ALL BETS</button>
+                    </div>
+                </div>
+                <div id="targets-container" class="targets-grid"></div>
+            </div>
+
+            <div class="sidebar-column">
+                <div class="glass-panel sidebar-widget">
+                    <h2 class="cyber-heading widget-title">🏆 WHALES</h2>
+                    <div id="leaderboard-container"></div>
+                </div>
+
+                <div class="glass-panel sidebar-widget">
+                    <h2 class="cyber-heading widget-title">🔥 MOST WANTED</h2>
+                    <div id="hot-targets-container"></div>
+                </div>
+
+                <div class="glass-panel sidebar-widget">
+                    <h2 class="cyber-heading widget-title">CONTRACT</h2>
+                    <div id="empty-slip" class="empty-state">Pick someone to bet on.</div>
+                    <div id="active-slip" class="hidden">
+                        <p id="slip-target" style="font-weight:bold; color:#fff; font-size:1.2rem; margin:0 0 5px 0;"></p>
+                        <p id="slip-duration" style="color:var(--neon-cyan); margin:0 0 15px 0;"></p>
+                        <div class="input-group"><label>BET AMOUNT (COPIUM)</label><input type="number" id="stake-input" value="10"></div>
+                        <div class="payout-row"><span>WINNINGS:</span><span id="potential-payout" class="payout-amount" style="color:var(--neon-cyan); font-weight:bold;">0 💊</span></div>
+                        <button class="neon-btn" id="place-bet-btn">PLACE BET</button>
+                    </div>
+                </div>
+
+                <div class="glass-panel sidebar-widget">
+                    <h2 class="cyber-heading widget-title">💬 TROLL BOX</h2>
+                    <div id="chat-box" style="height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; padding-right: 5px; scroll-behavior: smooth;">
+                        <div class="empty-state">No one is yapping.</div>
+                    </div>
+                    <div style="display: flex; gap: 5px;">
+                        <input type="text" id="chat-input" placeholder="Trash talk here..." style="flex: 1; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; border-radius:6px; padding: 10px; font-family: var(--font-body);">
+                        <button id="send-chat-btn" class="neon-btn" style="width: auto; padding: 10px 15px;">SEND</button>
+                    </div>
+                </div>
+
+                <div class="glass-panel sidebar-widget">
+                    <h2 class="cyber-heading widget-title">SNITCH</h2>
+                    <input type="text" id="new-target-name" placeholder="Target Name" style="width:100%; margin-bottom:10px; padding:10px; background:rgba(0,0,0,0.4); border:1px solid var(--glass-border); color:#fff; border-radius:6px; box-sizing:border-box;">
+                    <button class="neon-btn alt-btn" id="add-target-btn">ADD TARGET</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="how-to-modal" class="auth-wrapper hidden" style="position:fixed; top:0; left:0; width:100%; height:100vh; z-index:9999; background:rgba(0,0,0,0.9); overflow-y:auto; padding:20px; box-sizing:border-box;">
+        <div class="glass-panel auth-card" style="max-width:550px; margin: 2rem auto; max-height:85vh; overflow-y:auto;">
+            <h2 class="cyber-heading" style="color: var(--neon-cyan); margin-bottom: 1.5rem; text-align: center;">HOW TO PLAY</h2>
+            <div style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; color: #e2e8f0;">
+                <h3 style="color: var(--neon-purple); font-size: 1rem; margin-bottom: 5px;">💰 1. Your Daily Allowance</h3>
+                <p style="margin-bottom: 15px; color: var(--text-muted);">Every 24 hours you log in, the system grants you a stimulus check of <b>1,000 Copium (💊)</b>.</p>
+                <h3 style="color: var(--neon-purple); font-size: 1rem; margin-bottom: 5px;">🎯 2. Place a Bounty (Snitching)</h3>
+                <p style="margin-bottom: 15px; color: var(--text-muted);">Is someone talking too much? Type their name in the <b>SNITCH</b> box to add them to the market.</p>
+                <h3 style="color: var(--neon-purple); font-size: 1rem; margin-bottom: 5px;">🎲 3. Buy a Contract (Betting)</h3>
+                <p style="margin-bottom: 15px; color: var(--text-muted);">Click on a target's odds to bet on <i>how long</i> they will get muted for:<br>
+                • <b>1h (Nap Time)</b><br>
+                • <b>24h (Touch Grass)</b><br>
+                • <b>1w (Exile)</b><br>
+                <i>Note: Habitual yappers who get muted frequently will permanently lower their payout multipliers!</i></p>
+            </div>
+            <button class="neon-btn" onclick="document.getElementById('how-to-modal').classList.add('hidden')" style="margin-top: 10px; position: relative; z-index: 10001;">UNDERSTOOD</button>
+        </div>
+    </div>
+
+    {% include 'account.html' %}
+    <script src="/static/js/main.js?v=100"></script>
+</body>
+</html>

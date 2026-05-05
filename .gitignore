@@ -1,0 +1,10 @@
+# Ignore the database so you don't leak user data
+*.db
+mutemarket.db
+
+# Ignore the actual secrets file
+.env
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
